@@ -14,13 +14,13 @@ HTML 문서를 읽으면서 DOM tree로 만드는 과정을 파싱이라고 하�
 
 ### 2. \<script\> 요소
 
-| 속성        | 값                                   | 설명                                                 |
-| ----------- | ------------------------------------ | ---------------------------------------------------- |
-| type        | "text/javscript"(default) / "module" |                                                      |
-| src         | 외부파일의 위치지정                  |                                                      |
-| async       | 비동기적 fetch                       | fetch 완료 후, 바로 execution                        |
-| defer       | 비동기적 fetch                       | parsing 완료 후, execution                           |
-| crossorigin | "anonymous" / "use-credentials "     | CORS에 대한 옵션. 대표적으로 쿠키를 주고받을 때 사용 |
+| 속성        | 값                                    | 설명                                                 |
+| ----------- | ------------------------------------- | ---------------------------------------------------- |
+| type        | "text/javscript" `default` / "module" |                                                      |
+| src         |                                       | 외부파일의 위치지정                                  |
+| async       |                                       | 비동기적 fetch, fetch 완료 후, 바로 execution        |
+| defer       |                                       | 비동기적 fetch, parsing 완료 후, execution           |
+| crossorigin | "anonymous" / "use-credentials "      | CORS에 대한 옵션. 대표적으로 쿠키를 주고받을 때 사용 |
 
 기본적으로 브라우저가 파싱 중 인라인 스크립트 또는 async, defer, type="module" 특성이 없는 스크립트에 도달하면 스크립트를 가져온 후 실행하기 전까지 분석을 중단한다.
 
