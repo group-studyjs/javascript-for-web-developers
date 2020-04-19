@@ -22,17 +22,27 @@ HTML 문서를 읽으면서 DOM tree로 만드는 과정을 파싱이라고 하�
 | defer       |                                       | 비동기적 fetch, parsing 완료 후, execution           |
 | crossorigin | "anonymous" / "use-credentials "      | CORS에 대한 옵션. 대표적으로 쿠키를 주고받을 때 사용 |
 
-기본적으로 브라우저가 파싱 중 인라인 스크립트 또는 async, defer, type="module" 특성이 없는 스크립트에 도달하면 스크립트를 가져온 후 실행하기 전까지 분석을 중단한다.
+### 일반적인 경우
 
 ![](https://blog.asamaru.net/res/img/post/2017/05/script-async-defer-1.png)
 
-**async** 속성이 명시된 경우, 브라우저가 페이지를 파싱되는 동안에도 fetch하고 fetch가 완료되면 파싱도중 스크립트를 실행 한다.
+기본적으로 브라우저가 파싱 중 인라인 스크립트 또는 async, defer, type="module" 특성이 없는 스크립트에 도달하면 스크립트를 가져온 후 실행하기 전까지 분석을 중단한다.
+
+<hr/>
+
+### async 명시한 경우
 
 ![](https://blog.asamaru.net/res/img/post/2017/05/script-async-defer-2.png)
 
-**defer** 속성이 명시된 경우, 브라우저가 페이지의 파싱을 모두 끝냈을 때 스크립트가 실행한다.
+**async** 속성이 명시된 경우, 브라우저가 페이지를 파싱되는 동안에도 fetch하고 fetch가 완료되면 파싱도중 스크립트를 실행 한다.
+
+<hr/>
+
+### defer 명시한 경우
 
 ![](https://blog.asamaru.net/res/img/post/2017/05/script-async-defer-3.png)
+
+**defer** 속성이 명시된 경우, 브라우저가 페이지의 파싱을 모두 끝냈을 때 스크립트가 실행한다.
 
 <hr/>
 
