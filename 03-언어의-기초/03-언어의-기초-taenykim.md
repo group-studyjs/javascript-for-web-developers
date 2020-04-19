@@ -501,6 +501,190 @@ let message = 'The sum of 10 + 20 is ' + result // The sum of 10 + 20 is 30
 
 ## 14. 관계 연산자(>,<)
 
+| 피연산자 상태                    | 비교방식                                                    |
+| -------------------------------- | ----------------------------------------------------------- |
+| 모두 숫자                        | 숫자형 비교                                                 |
+| 모두 문자열                      | 문자열 비교(맨 앞자리부터 문자코드 비교, 대소문자도 고려함) |
+| 하나만 숫자                      | 다른 피연산자를 숫자로 변환 후 숫자형 비교                  |
+| 하나만 숫자(다른 피연산자가 NaN) | 항상 false                                                  |
+
+```js
+'Brick' < 'alphabet' // true
+'Brick'.toUpperCase() > 'alphabet'.toUpperCase() // true
+'23' < '3' // true
+'23' > 3 // true
+
+'a' > 3 // false
+'a' <= 3 // false
+```
+
+<hr/>
+
+## 15. 동일 연산자(==), 일치 연산자(===)
+
+동일 연산자는 `"2" == 2` 처럼 자바스크립트의 타입 변환을 통해 일치할 수 있는 관계이며, 일치 연산자는 `"2" === "2"` 처럼 값과 타입이 모두 일치할 때를 가리킨다.
+
+```js
+null == undefined // true
+
+typeof null // object
+typeof undefined // undefined
+
+null === undefined // false
+
+true == 1 // true
+true == 2 // false
+true === 1 // false
+
+'2' == 2 // true
+'2' === 2 // false
+```
+
+> 여러가지 문제를 피해가 위해서 동일 연산자(==) 보다는 일치 연산자(===)를 쓰는 것이 권장됨.
+
+<hr/>
+
+## 16. for...in vs for...of
+
+| 용법     | 특징                                       |
+| -------- | ------------------------------------------ |
+| for...in | 객체, 배열 모두 사용가능 / 프로퍼티 가져옴 |
+| for...of | 배열만 가능(객체는 안됨) / 값 가져옴       |
+
+```js
+let iterable = [3, 5, 7]
+iterable.foo = 'hello'
+
+for (let i in iterable) {
+  console.log(i) // 0, 1, 2, "foo"
+}
+
+for (let i of iterable) {
+  console.log(i) // 3, 5, 7
+}
+```
+
+```js
+let obj = {
+  name: 'taeeun',
+  age: 27,
+  hobby: 'movie',
+}
+
+for (let i in obj) {
+  console.log(i) // name, age, hobby
+}
+
+for (let i in obj) {
+  console.log(obj[i]) // 'taeeun', 27, 'movie'
+}
+```
+
+<hr/>
+
+## 17. 문장 레이블, break, continue
+
+for문 같은 문장에 `label:statement` 이런 식으로, 레이블을 붙여서 break와 continue 시, 참조할 수 있다.
+
+```js
+// contine 레이블
+
+loop1: for (let i = 0; i < 3; i++) {
+  //첫번째 for문은 "loop1" 레이블을 붙였다.
+  loop2: for (let j = 0; j < 3; j++) {
+    //두번째 for문은 "loop2" 레이블을 붙였다.
+    if (i === 1 && j === 1) {
+      continue loop1
+    }
+    console.log('i = ' + i + ', j = ' + j)
+  }
+}
+
+// 출력 결과:
+//   "i = 0, j = 0"
+//   "i = 0, j = 1"
+//   "i = 0, j = 2"
+//   "i = 1, j = 0"
+//   "i = 2, j = 0"
+//   "i = 2, j = 1"
+//   "i = 2, j = 2"
+```
+
+```js
+// break 레이블
+
+loop1: for (let i = 0; i < 3; i++) {
+  //첫번째 for문은 "loop1" 레이블을 붙였다.
+  loop2: for (let j = 0; j < 3; j++) {
+    //두번째 for문은 "loop2" 레이블을 붙였다.
+    if (i === 1 && j === 1) {
+      break loop1
+    }
+    console.log('i = ' + i + ', j = ' + j)
+  }
+}
+
+// 출력 결과:
+//   "i = 0, j = 0"
+//   "i = 0, j = 1"
+//   "i = 0, j = 2"
+//   "i = 1, j = 0"
+```
+
+> continue는 성능문제를 일으켜서 최대한 사용을 권장하지 않는다고 한다. 중첩을 돌면서 해당 조건을 만족하면 return 이나 break로 재빨리 반복문을 빠져나오게끔하는 코드가 좋은 코드일 듯!
+
+<hr/>
+
+## 18. 함수의 매개변수
+
+ECMAScript의 함수의 매개변수는 다른 언어의 매개변수와 다르게 **매개변수의 숫자를 따지지 않으며**, **데이터 타입도 체크하지 않는다**. 즉, 함수에서 매개변수를 두 개 받도록 만들었더라도 반드시 매개변수를 두 개 넘겨야 하는 것이 아니며, 한 개, 세 개, 또는 아예 넘기지 않아도 된다. 이는 ECMAScript의 매개변수가 내부적으로 **배열** 로 표현되기 때문이다. 이 배열 내부에서는 어떤 값이 들어있는지(타입이 같든 다르든) 체크하지 않는다.
+
+그리고 함수는 arguments 라는 객체를 갖는데, 이 객체를 통해 매개변수의 값에 접근할 수 있다.
+
+```js
+function sayHi(name, message) {
+  console.log('Hello ' + name + ',' + message)
+}
+sayHi('taeeun', 'welcome')
+
+// same
+
+function sayHi() {
+  console.log('Hello ' + arguments[0] + ',' + arguments[1])
+}
+sayHi('taeeun', 'welcome')
+```
+
+즉, 이런식으로 매개변수의 길이를 반영하는 함수도 작성이 가능하다.
+
+```js
+function add() {
+  let sum = 0
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i]
+  }
+  console.log(sum)
+}
+
+add(1) // 1
+add(1, 2, 3, 4, 5) // 15
+```
+
+> p.104 페이지에 "ECMAScript의 매개변수는 모두 값으로 넘겨야 합니다. 매개변수를 참조 형식으로 전달할 수는 없습니다." 라는 말은 이해안됨.ㅠ
+
+```js
+// 참조타입으로 매개변수 잘만 들어가는디...
+let arr = [1, 2, 3]
+function a(k) {
+  k.splice(0, 1)
+  console.log(k)
+}
+a(arr) // [2,3]
+console.log(arr) // [2,3]
+```
+
+마찬가지로 자바스크립트는 자바처럼 오버로딩은 없지만 매개변수가 배열로 들어온다는 성질을 이용해서 오버로딩을 흉내낼 수 있다.
+
 ## 참고
 
 [https://bakyeono.net/post/2018-01-19-javascript-use-semicolon-or-not.html](https://bakyeono.net/post/2018-01-19-javascript-use-semicolon-or-not.html)
@@ -510,3 +694,7 @@ let message = 'The sum of 10 + 20 is ' + result // The sum of 10 + 20 is 30
 [https://ko.javascript.info/constructor-new](https://ko.javascript.info/constructor-new)
 
 [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)
+
+[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of)
+
+[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/label](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/label)
