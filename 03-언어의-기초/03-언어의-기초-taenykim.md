@@ -20,7 +20,7 @@
 
 변수명(식별자)를 지을 때, 지켜야할 규칙이 있다.
 
-1. 첫번 째 문자는 `글자` 혹은 `\_`, `\$` 만 가능하다.
+1. 첫번 째 문자는 `글자` 혹은 `_`, `$` 만 가능하다.
 
 ```js
 const 1num; // x
@@ -41,8 +41,8 @@ const case; // x
 3. 카멜케이스, 스네이크케이스 (option)
 
 ```js
-const myname // bad
-const myName // good
+let myname = 'taeeun' // bad
+let myName = 'taeeun' // good
 
 const MAXLENGTH = 10 // bad
 const MAX_LENGTH = 10 // good
@@ -131,7 +131,7 @@ class Foo {
 | string    |          |
 | symbol    |          |
 
-> symbol은 ECMAScript 6에서 추가되었음.
+> symbol은 ECMAScript 6에서 추가되었음. 이번 챕터에서 언급은 x
 
 <hr/>
 
@@ -164,7 +164,7 @@ let message
 console.log(message) // undefined
 ```
 
-> 이를 TDZ라고 함.
+> 이를 TDZ라고 함. 변수를 읽긴하였지만 `undefined` 를 아직 할당하지 않은 상태
 
 <hr/>
 
@@ -178,7 +178,7 @@ typeof car
 // "object"
 ```
 
-> `null==undefined`이 true로 나오는 것은 다음장에서 설명
+`null==undefined` 는 true를 출력하지만 `null===undefined` 는 false 를 출력함.
 
 <hr/>
 
@@ -186,13 +186,17 @@ typeof car
 
 **boolean** 은 true, false 두가지 값만 가지는 타입이다. 하지만 Boolean() 함수를 호출해서 다른 타입을 boolean 타입으로 변환시킬 수도 있고, if문 같은 제어문에서는 타입들이 자동으로 boolean으로 변환된다.
 
-| type      | true       | false        |
-| --------- | ---------- | ------------ |
-| undefined |            | undefined    |
-| null      |            | null         |
-| 숫자      | 0빼고 다   | 0,NaN        |
-| 문자열    | ''빼고 다  | ''(빈문자열) |
-| 객체      | 다({}포함) | null         |
+| type        | true      | false        |
+| ----------- | --------- | ------------ |
+| `undefined` |           | undefined    |
+| `null`      |           | null         |
+| `숫자`      | 0빼고 다  | 0,NaN        |
+| `문자열`    | ''빼고 다 | ''(빈문자열) |
+| `객체`      | 다        | null         |
+
+정리하면, undefined, null, 0, NaN, '' 제외하고 모두 **true** !!
+
+> {} 도 true !! 헷갈리지 않기!
 
 <hr/>
 
@@ -265,8 +269,8 @@ console.log(0 / 0) // NaN
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | Number()     | 리딩제로(숫자 앞에 붙이는 0)을 무시함.(16진법 제외) 그렇기 때문에 8진법 표기법(070)은 모두 10진법으로 변환되지만 16진법 표기법(0xA)는 잘 표기됨 |
 | parseInt()   | 마찬가지 리딩제로 무시함.(16진법 제외) 문자열의 경우, 숫자가 아닌 문자가 나올 때까지 변환. 부동소수점은 버림. 두번째 인자로 x진법 변환 가능     |
-| parseFloat() | 리딩제로 항상 무시함. (16진법 포함)                                                                                                             |
-| +(값 앞에)   |                                                                                                                                                 |
+| parseFloat() | 리딩제로 **항상** 무시함. (16진법 포함)                                                                                                         |
+| +(값 앞에)   | 값 앞에 +를 붙이면 숫자타입으로 변환                                                                                                            |
 
 ```js
 Number('1234dd') // NaN
@@ -328,7 +332,7 @@ str = str.replace('h', 'p') // good
 | ---------- | ---------------------------------------------------------- |
 | String()   | null, undefined같은 toString 메소드가 없는 값들도 변환가능 |
 | toString() | 인자에 들어가는 값 x에 따라 x진법의 수로 변환 가능         |
-| (값)+ ""   | 리딩제로 항상 무시함. (16진법 포함)                        |
+| (값)+ ""   | ""를 더해주면 문자열로 변환됨                              |
 
 ```js
 let value = null
@@ -352,7 +356,7 @@ const arr = new Array()
 const func = new Function()
 ```
 
-> 의문! 배열,함수,객체인스턴스 모두 객체인가?? 5장부터 객체가 나오긴하는데 객체의 정의가 {}만 말하는 것인지 Array, Function, Date, console 이런 내장객체를 포괄하는 개념인지 헷갈림.. [참고링크](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)
+> 의문! 배열,함수,객체인스턴스 모두 객체인가?? 5장부터 객체가 나오긴하는데 객체의 정의가 {}만 말하는 것인지 Array, Function, Date, console 이런 내장객체를 포괄하는 개념인지 헷갈림.. 그냥 원시타입 아닌 것들은 전부 다 객체인가? [참고링크](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)
 
 프로퍼티(속성)과 메소드를 추가하여 독립된 새로운 객체를 만들 수 있다.
 
@@ -380,6 +384,18 @@ let user = new User('Jack')
 
 console.log(user.name) // Jack
 console.log(user.isAdmin) // false
+```
+
+> 의문! 우리가 사용하는 함수나 배열도 다 new 를 이용해서 객체 인스턴스화 시켜서 만든것? 그렇다면 `Array`, `Function` 이런 애들을 내장객체라고 부르는데 그로 인해 생성된 인스턴스도 객체인데 객체로 객체를 만든건가..?
+
+```js
+// 배열의 경우
+let arr = [1, 2, 3, 4]
+let arr = new Array(1, 2, 3, 4)
+
+// 함수의 경우
+let func = function () {}
+let func = new Function()
 ```
 
 <hr/>
@@ -567,18 +583,29 @@ true === 1 // false
 | for...in | 객체, 배열 모두 사용가능 / 프로퍼티 가져옴 |
 | for...of | 배열만 가능(객체는 안됨) / 값 가져옴       |
 
+for...in 이 더 범용성이 높고 프로퍼티를 통해 값을 가져올 수 있으니 for...of를 쓸 일은 없을 것 같다.
+
 ```js
 let iterable = [3, 5, 7]
 iterable.foo = 'hello'
 
+// good
 for (let i in iterable) {
   console.log(i) // 0, 1, 2, "foo"
 }
 
+// bad
 for (let i of iterable) {
   console.log(i) // 3, 5, 7
 }
+
+// good
+for (let i in iterable) {
+  console.log(iterable[i]) // 3, 5, 7, "hello"
+}
 ```
+
+배열처럼 순서가 없는 객체에서도 프로퍼티, 값 탐색 가능!
 
 ```js
 let obj = {
