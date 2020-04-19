@@ -208,7 +208,7 @@ if (1 + 1 == 2) console.log('true')
 // true
 
 if (1.5 + 0.5 == 2) console.log('true')
-// 출력 하지 않음 2.000000000004
+// true를 출력 하지 않음 (2.000000000004)
 ```
 
 NaN은 숫자의 값 중 하나로, 숫자로 변환할 수 없는 경우 반환되는 값이다.
@@ -336,7 +336,7 @@ const arr = new Array()
 const func = new Function()
 ```
 
-> 의문! 배열,함수,객체인스턴스 모두 객체인가??
+> 의문! 배열,함수,객체인스턴스 모두 객체인가?? 5장부터 객체가 나오긴하는데 객체의 정의가 {}만 말하는 것인지 Array, Function, Date, console 이런 내장객체를 포괄하는 개념인지 헷갈림.. [참고링크](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)
 
 프로퍼티(속성)과 메소드를 추가하여 독립된 새로운 객체를 만들 수 있다.
 
@@ -368,6 +368,139 @@ console.log(user.isAdmin) // false
 
 <hr/>
 
+## 9. 단항연산자
+
+증감 연산자 `++`, `--` 는 값 앞뒤로 붙일 경우, 현재 값에서 1을 더하거나 빼며, 단항 플러스, 단항 마이너스 연산자 `+`, `-`는 각각 값을 숫자로 변환하거나 숫자의 부호를 바꿀 때 사용한다.
+
+> 증감 연산자의 경우, 헷갈릴 수 있기 때문에 이해하고서 실제 사용은 지양하자! (실수하기 쉽고 의미를 정확하게 판단할 수 없는 코드를 좋은 코드라고 말하기 어렵다고 책에서는 언급한다.)
+
+```js
+let num1 = 2
+let num2 = 20
+let num3 = --num1 + num2 // 21
+let num 4 = num1 + num2 // 21
+// 값의 앞에 붙은 증감연산자는 값이 적용된 후 식을 수행함
+
+let num1 = 2
+let num2 = 20
+let num3 = num1-- + num2 // 22
+let num 4 = num1 + num2 // 21
+// 값의 뒤에 붙은 증감연산자는 식을 수행한 후 값을 적용 함.
+
+let answer = 5
+answer++
+console.log(answer) //6
+// 이렇게 한 라인에 써주는 것은 헷갈릴 일이 없음.
+```
+
+<hr/>
+
+## 10. [불리언 연산자 1]. ! (NOT)
+
+앞에서 언급했듯이, if문 같은 제어문에서는 타입들이 자동으로 boolean으로 변환된다. 하지만 조건문이 없어도 !! 두번 써주면 해당 값의 boolean 값을 가져올 수 있다.
+
+```js
+!false // true
+!'blue' // false
+
+if ('blue') console.log('true') // true
+
+!!'blue' // true
+Boolean('blue') // true
+!!0 // false
+Boolean(0) // false
+```
+
+<hr/>
+
+## 11. [불리언 연산자 2]. && (AND)
+
+| 피연산자1 | 피연산자2 | 결과 |
+| --------- | --------- | ---- |
+| 0         | null      | 0    |
+| 0         | 1         | 0    |
+| 1         | 0         | 0    |
+| 1         | {}        | {}   |
+
+위 표를 보면 첫번째 피연산자가 false 일 경우, 첫번째 피연산자를 반환하고,
+
+첫번째 피연산자가 true 일 경우, 두번째 피연산자를 반환하는 것을 볼 수 있다.
+
+즉, &&을 이런 식으로도 사용할 수 있다.
+
+```js
+// 일반적인 용법
+if (1 && {}) return true
+
+// 검증(?)의 용법
+obj && obj.method()
+```
+
+obj라는 객체의 메소드를 사용하고자 할 때, obj라는 객체가 없을 경우, 메소드에 접근할 수 없기 때문에 에러를 뱉는다. 하지만 obj가 있을 때만 해당 메소드를 실행하게끔 `&&`로 끊어줄 수 있다.
+
+> 책에서의 found && someUndeclaredVariable 을 변형하였음.
+
+<hr/>
+
+## 12. [불리언 연산자 3.] || (OR)
+
+| 피연산자1 | 피연산자2 | 결과 |
+| --------- | --------- | ---- |
+| 0         | null      | null |
+| 0         | 1         | 1    |
+| 1         | 0         | 0    |
+| 1         | {}        | 1    |
+
+위 표를 보면 첫번째 피연산자가 false 일 경우, 두번째 피연산자를 반환하고,
+
+첫번째 피연산자가 true 일 경우, 첫번째 피연산자를 반환하는 것을 볼 수 있다.
+
+> && 와 다르게 true가 존재하면 바로 그 값을 반환하는 것을 알 수 있다.
+
+즉, ||을 이런 식으로도 사용할 수 있다.
+
+```js
+// 일반적인 용법
+if (0 || null || undefined || 1) return true
+
+// 백업(?)의 용법
+let obj = preferredObject || backupObject
+```
+
+obj라는 객체의 값을 할당할 때, preferredObject를 담을 목적이지만, 해당 값이 빈값이거나 할당이 안된 값이면(false) null이나 undefined를 할당하는 것이 아니라 backupObject 값을 할당하게끔 할 수 있다.
+
+<hr/>
+
+## 13. 숫자와 문자의 덧셈과 뺄셈
+
+앞서서 자바스크립트에서는 숫자가 아니지만 숫자로 변환할 수 있는 타입끼리의 연산은 자동으로 변환해서 연산을 수행한 다는 것을 배웠다.
+
+```js
+console.log('6' - 1) // 5
+console.log(true * 3) // 3
+
+// 예외적으로 문자열 + 문자열은 문자열로서 더하기를 수행함
+console.log('5' + '5' == '55') // true, 10이 아님!
+console.log('5' + 5 === '55') // 마찬가지로 true, 10이 아님!
+```
+
+실수를 피하기 위해서는 문자열 출력과 숫자 연산을 같이하지 않거나, 타입 변환을 잘 해주는 것이 중요하다.
+
+```js
+let num1 = 10
+let num2 = 20
+let message = 'The sum of 10 + 20 is ' + num1 + num2 // The sum of 10 + 20 is 1020
+let message = 'The sum of 10 + 20 is ' + (num1 + num2) // The sum of 10 + 20 is 30
+
+// best
+let result = num1 + num2
+let message = 'The sum of 10 + 20 is ' + result // The sum of 10 + 20 is 30
+```
+
+<hr/>
+
+## 14. 관계 연산자(>,<)
+
 ## 참고
 
 [https://bakyeono.net/post/2018-01-19-javascript-use-semicolon-or-not.html](https://bakyeono.net/post/2018-01-19-javascript-use-semicolon-or-not.html)
@@ -375,3 +508,5 @@ console.log(user.isAdmin) // false
 [https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
 
 [https://ko.javascript.info/constructor-new](https://ko.javascript.info/constructor-new)
+
+[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)
