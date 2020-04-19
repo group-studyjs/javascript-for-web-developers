@@ -2,7 +2,13 @@
 
 이번 챕터에서는 자바스크립트는 무엇이며, 어떤 역할을 하는지에 대해서 알아보았다.
 
-### 1. 클라이언트 스크립트 언어
+[1. 클라이언트 스크립트 언어](#1-클라이언트-스크립트-언어)
+
+[2. 코어(ECMAScript)](#2-코어ecmascript)
+
+[3. 브라우저 환경(DOM, BOM)](#3-브라우저-환경dom-bom)
+
+## 1. 클라이언트 스크립트 언어
 
 스크립트 언어는 기존에 이미 존재하는 소프트웨어(애플리케이션)를 제어하기 위한 용도로 쓰이는 언어를 의미하고, **클라이언트 스크립트 언어**는 스크립트 언어이면서 클라이언트(사용자) 측에서 동작되는 언어를 의미한다.
 
@@ -14,7 +20,7 @@
 
 <hr/>
 
-### 2. 코어(ECMAScript)
+## 2. 코어(ECMAScript)
 
 자바스크립트 언어의 규칙 혹은 문법을 표준화 시킨 언어(사양)을 **ECMAScript** 라고 한다. ECMAScript는 **ECMA**라는 단체에 의해 제정된 **ECMA-262** 표준 기술 규격에 의해 정의되고, **ECMA**라는 단체에서 매년 기존의 결점을 보완하거나 새로운 문법을 추가하는 식으로 표준화되고 있다.
 
@@ -22,13 +28,13 @@
 
 <hr/>
 
-### 3. 브라우저 환경(DOM, BOM)
+## 3. 브라우저 환경(DOM, BOM)
 
 호스트 환경이 브라우저일 경우 전역객체로 window가 있어서 코어 이외의 기능들을 사용할 수 있다. 대표적으로 DOM과 BOM이 있는데, DOM은 문서 객체 모델(Document Object Model, DOM)로 웹 페이지 내의 모든 콘텐츠를 객체로서 접근하고 제어할 수 있고, BOM은 브라우저 객체 모델(Browser Object Model, BOM)로 문서 이외의 것들을 제어하기 위해 브라우저(호스트 환경)가 추가적인 객체를 제공한다.
 
 <hr/>
 
-### 참고
+## 참고
 
 [https://wormwlrm.github.io/2018/10/03/What-is-the-difference-between-javascript-and-ecmascript.html](https://wormwlrm.github.io/2018/10/03/What-is-the-difference-between-javascript-and-ecmascript.html)
 
