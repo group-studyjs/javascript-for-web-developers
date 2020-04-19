@@ -22,10 +22,10 @@ HTML 문서를 읽으면서 DOM tree로 만드는 과정을 파싱이라고 하�
 
 | 속성        | 값                                    | 설명                                                 |
 | ----------- | ------------------------------------- | ---------------------------------------------------- |
-| type        | "text/javscript" `default` / "module" |                                                      |
-| src         |                                       | 외부파일의 위치지정                                  |
-| async       |                                       | 비동기적 fetch, fetch 완료 후, 바로 execution        |
-| defer       |                                       | 비동기적 fetch, parsing 완료 후, execution           |
+| type        | "text/javscript" `default` / "module" | module 여부                                          |
+| src         | "url"                                 | 외부파일의 위치지정                                  |
+| async       | booelan                               | 비동기적 fetch, fetch 완료 후, 바로 execution        |
+| defer       | boolean                               | 비동기적 fetch, parsing 완료 후, execution           |
 | crossorigin | "anonymous" / "use-credentials "      | CORS에 대한 옵션. 대표적으로 쿠키를 주고받을 때 사용 |
 
 ### 일반적인 경우
