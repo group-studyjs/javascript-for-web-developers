@@ -1,10 +1,10 @@
 # 언어의 기초
 
-### 1. 변수명 짓기
+## 1. 변수명 짓기
 
 변수명(식별자)를 지을 때, 지켜야할 규칙이 있다.
 
-1. 첫번 째 문자는 **글자** 혹은 **\_**, **\$** 만 가능하다.
+1. 첫번 째 문자는 `글자` 혹은 `\_`, `\$` 만 가능하다.
 
 ```js
 const 1num; // x
@@ -36,7 +36,7 @@ const MAX_LENGTH = 10 // good
 
 <hr/>
 
-### 2. 세미콜론
+## 2. 세미콜론
 
 책에서는 세미콜론을 항상 쓰는 것을 권장하지만, 인터넷을 찾아보니 세미콜론을 쓰지 않아도 된다는 글도 있었다.
 
@@ -102,7 +102,7 @@ class Foo {
 
 <hr/>
 
-### 3. data Type
+## 3. data Type
 
 자바스크립트 데이터 타입은 총 7개로 원시타입 6개, 참조타입 1개로 이루어져있다.
 
@@ -110,10 +110,16 @@ class Foo {
 | --------- | -------- |
 | undefined | Object   |
 | null      |          |
+| boolean   |          |
+| number    |          |
+| string    |          |
+| symbol    |          |
 
 > symbol은 ECMAScript 6에서 추가되었음.
 
-### 4. [type 1]. undefined
+<hr/>
+
+## 4. [type 1]. undefined
 
 변수를 선언하고 초기화시켜주지 않으면 해당 변수는 자동으로 **undefined** 값을 할당받는다.
 
@@ -146,7 +152,7 @@ console.log(message) // undefined
 
 <hr/>
 
-### 5. [type 2]. null
+## 5. [type 2]. null
 
 **null**은 빈 값을 의미하며 정확히는 **빈 객체**를 가리킨다. 그렇기 때문에 typeof 연산자를 썼을 때 null일 경우, object를 반환한다.
 
@@ -160,7 +166,7 @@ typeof car
 
 <hr/>
 
-### 5. [type 3]. boolean
+## 5. [type 3]. boolean
 
 **boolean** 은 true, false 두가지 값만 가지는 타입이다. 하지만 Boolean() 함수를 호출해서 다른 타입을 boolean 타입으로 변환시킬 수도 있고, if문 같은 제어문에서는 타입들이 자동으로 boolean으로 변환된다.
 
@@ -174,7 +180,7 @@ typeof car
 
 <hr/>
 
-### 6. [type 4]. 숫자
+## 6. [type 4]. 숫자
 
 일반적으로 숫자를 변수에 할당하면 **10진법**의 숫자가 변수에 담긴다.
 
@@ -272,7 +278,9 @@ num.toString(2) // "1000110"
 parseInt('1000110', 2) // 70
 ```
 
-### 7. [type 5]. 문자열
+<hr/>
+
+## 7. [type 5]. 문자열
 
 문자열 내부에서 특수문자는 보통 `\`기호를 이용해서 사용한다.
 
@@ -316,7 +324,9 @@ let value = num + ''
 typeof value // string
 ```
 
-### 8. [type 6]. 객체
+<hr/>
+
+## 8. [type 6]. 객체
 
 ECMAScript 에서 객체는 데이터와 기능의 집합을 의미한다.
 
@@ -356,7 +366,9 @@ console.log(user.name) // Jack
 console.log(user.isAdmin) // false
 ```
 
-### 참고
+<hr/>
+
+## 참고
 
 [https://bakyeono.net/post/2018-01-19-javascript-use-semicolon-or-not.html](https://bakyeono.net/post/2018-01-19-javascript-use-semicolon-or-not.html)
 
