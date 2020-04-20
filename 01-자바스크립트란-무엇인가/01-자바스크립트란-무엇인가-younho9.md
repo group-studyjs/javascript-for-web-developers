@@ -10,7 +10,7 @@
 
 [넷스케이프](https://ko.wikipedia.org/wiki/%EB%84%B7%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84)가 이러한 클라이언트 스크립트 언어의 필요성을 느꼈고 넷스케이프에서 일하고 있던 [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich)에 의해 Mocha라는 이름으로 최초의 자바스크립트가 탄생했다. Mocha는 1995년 3월 넷스케이프의 웹 브라우저인 Netscape Navigator 2에 탑재되었고 그 해 9월 LiveScript라는 이름을 거쳐 12월에 자바스크립트로 최종 명명되었다. 
 
-> 자바스크립트라는 이름은 당시 자바가 얻고 있던 인기에 편승하기 위함이었고, 자바와 특별한 연관성이 있는 것은 아니다.
+> ☝️ 자바스크립트라는 이름은 당시 자바가 얻고 있던 인기에 편승하기 위함이었고, 자바와 특별한 연관성이 있는 것은 아니다.
 
 넷스케이프에 도입된 자바스크립트가 대성공을 거두면서 넷스케이프는 웹을 선도하는 회사로 자리매김할 수 있었다. 하지만 마이크로소프트가 자바스크립트의 파생 버전인 JScript를 탑재하여 Internet Explorer 3를 출시하면서 자바스크립트는 표준화되지 못하다는 이슈가 발생하기 시작했다.
 
@@ -38,7 +38,18 @@ ECMAScript의 여러 버전을 '판'이라고 부르는데 이는 ECMA-262의 �
 
 4판은 언어를 완전히 새로 바꾸었다. 자바스크립트가 웹에서 인기를 얻자 ECMAScript를 개정해 웹 개발에 필요한 부분을 충족하려 했다. TC39 내부에서 4판이 너무 급격한 도약이라고 생각한 사람들이 ECMAScript 3판을 일부 개정하여 ECMAScript 3.1 이라 불리는 별도의 명세로 제안했다. 결국 TC39에서 ECMAScript 3.1이 채택되어 4판은 공식적으로 발행되지 않은 상태에서 폐기되었다. ECMAScript 3.1이 5판이라는 이름으로 2009년 12월 공식 발표되었다. 이 때 JSON 데이터를 파싱하고 직렬화하는 네이티브 JSON 객체, 상속과 고급 프로퍼티 정의에 쓰이는 메서드, ECMAScript 엔진이 코드를 해석하고 실행하는 방법을 일부 확장한 스트릭트 모드가 도입되었다.
 
-[ECMAScript 버전별 특징](https://www.notion.so/3bdfeb9d5eb04b19b3b2335bc3972268)
+| 버전                 | 출시년도 | 특징                                                         |
+| -------------------- | -------- | ------------------------------------------------------------ |
+| ES1                  | 1997     | 초판                                                         |
+| ES2                  | 1998     | ISO/IEC 16262 국제 표준과 동일한 규격을 적용                 |
+| ES3                  | 1999     | 정규 표현식, try…catch 예외 처리                             |
+| ES5                  | 2009     | HTML5와 함께 출현한 표준안. JSON, strict mode, 접근자 프로퍼티(getter, setter), 향상된 배열 조작 기능(forEach, map, filter, reduce, some, every) |
+| ES6(ECMAScript 2015) | 2015     | let, const, class, 화살표 함수, 템플릿 리터럴, 디스트럭처링 할당, spread 문법, rest 파라미터, Symbol, Promise, Map/Set, iterator/generator, module import/export |
+| ES7(ECMAScript 2016) | 2016     | 지수(**) 연산자, Array.prototype.includes, String.prototype.includes |
+| ES8(ECMAScript 2017) | 2017     | async/await, Object 정적 메소드(Object.values, Object.entries, Object.getOwnPropertyDescriptors) |
+| ES9(ECMAScript 2018) | 2018     | Object Rest/Spread 프로퍼티                                  |
+
+
 
 #### 웹 브라우저의 ECMAScript 지원
 
@@ -46,7 +57,7 @@ ECMAScript의 여러 버전을 '판'이라고 부르는데 이는 ECMA-262의 �
 
 ![https://poiemaweb.com/img/kangax.png](https://poiemaweb.com/img/kangax.png)
 
-[ECMAScript 6 compatibility table](https://kangax.github.io/compat-table/es6)
+🔗 [ECMAScript 6 compatibility table](https://kangax.github.io/compat-table/es6)
 
 IE를 제외한 모던 브라우저에서 96~99% 정도로 ES6를 지원하고 있다. 하지만 IE나 구형 브라우저가 ES6를 지원하지 않고 있기 때문에 이들을 고려한다면 babel과 같은 트랜스파일러를 사용하여 ES6로 구현한 소스코드를 ES5 이하의 버전으로 다운그레이드할 필요가 있다. 또한 ES6에서 도입된 모듈 import/export는 아직 대부분의 브라우저가 지원하지 않고 있어서 프로젝트에서 모듈을 도입하려면 Webpack과 같은 모듈 번들러를 사용해야 한다.
 
@@ -92,9 +103,9 @@ BOM은 일차적으로 브라우저 창과 프레임을 다루는 인터페이�
 
 ## 참고자료
 
-[Introduction | PoiemaWeb](https://poiemaweb.com/js-introduction)
+🔗 [Introduction | PoiemaWeb](https://poiemaweb.com/js-introduction)
 
-[자바스크립트 역사](http://frontend.diffthink.kr/2016/06/blog-post_26.html)
+🔗 [자바스크립트 역사](http://frontend.diffthink.kr/2016/06/blog-post_26.html)
 
-[자바스크립트의 탄생과 ECMAScript 역사 정리](https://erokuma.tistory.com/entry/자바스크립트의-역사와-ECMAScript-대해)
+🔗 [자바스크립트의 탄생과 ECMAScript 역사 정리](https://erokuma.tistory.com/entry/자바스크립트의-역사와-ECMAScript-대해)
 
