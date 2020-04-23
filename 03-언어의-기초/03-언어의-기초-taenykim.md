@@ -50,8 +50,6 @@ const MAX_LENGTH = 10 // good
 
 > 카멜케이스(대문자사용), 스네이크케이스(언더바사용) 을 혼용해서 사용한다고 한다.
 
-<hr/>
-
 ## 2. 세미콜론
 
 책에서는 세미콜론을 항상 쓰는 것을 권장하지만, 인터넷을 찾아보니 세미콜론을 쓰지 않아도 된다는 글도 있었다.
@@ -116,8 +114,6 @@ class Foo {
 
 이를 피하기 위해서 값을 변수안에 집어넣거나 `const numbers = [].forEach()` 값을 return 해줄 수도 있다. `return [].forEach()`
 
-<hr/>
-
 ## 3. data Type
 
 자바스크립트 데이터 타입은 총 7개로 원시타입 6개, 참조타입 1개로 이루어져있다.
@@ -132,8 +128,6 @@ class Foo {
 | symbol    |          |
 
 > symbol은 ECMAScript 6에서 추가되었음. 이번 챕터에서 언급은 x
-
-<hr/>
 
 ## 4. [type 1]. undefined
 
@@ -166,8 +160,6 @@ console.log(message) // undefined
 
 > 이를 TDZ라고 함. 변수를 읽긴하였지만 `undefined` 를 아직 할당하지 않은 상태
 
-<hr/>
-
 ## 5. [type 2]. null
 
 **null**은 빈 값을 의미하며 정확히는 **빈 객체**를 가리킨다. 그렇기 때문에 typeof 연산자를 썼을 때 null일 경우, object를 반환한다.
@@ -179,8 +171,6 @@ typeof car
 ```
 
 `null==undefined` 는 true를 출력하지만 `null===undefined` 는 false 를 출력함.
-
-<hr/>
 
 ## 6. [type 3]. boolean
 
@@ -197,8 +187,6 @@ typeof car
 정리하면, undefined, null, 0, NaN, '' 제외하고 모두 **true** !!
 
 > {} 도 true !! 헷갈리지 않기!
-
-<hr/>
 
 ## 7. [type 4]. 숫자
 
@@ -298,8 +286,6 @@ num.toString(2) // "1000110"
 parseInt('1000110', 2) // 70
 ```
 
-<hr/>
-
 ## 8. [type 5]. 문자열
 
 문자열 내부에서 특수문자는 보통 `\`기호를 이용해서 사용한다.
@@ -343,8 +329,6 @@ let num = 5
 let value = num + ''
 typeof value // string
 ```
-
-<hr/>
 
 ## 9. [type 6]. 객체
 
@@ -398,8 +382,6 @@ let func = function () {}
 let func = new Function()
 ```
 
-<hr/>
-
 ## 10. 단항연산자
 
 증감 연산자 `++`, `--` 는 값 앞뒤로 붙일 경우, 현재 값에서 1을 더하거나 빼며, 단항 플러스, 단항 마이너스 연산자 `+`, `-`는 각각 값을 숫자로 변환하거나 숫자의 부호를 바꿀 때 사용한다.
@@ -425,8 +407,6 @@ console.log(answer) //6
 // 이렇게 한 라인에 써주는 것은 헷갈릴 일이 없음.
 ```
 
-<hr/>
-
 ## 11. [불리언 연산자 1]. ! (NOT)
 
 앞에서 언급했듯이, if문 같은 제어문에서는 타입들이 자동으로 boolean으로 변환된다. 하지만 조건문이 없어도 !! 두번 써주면 해당 값의 boolean 값을 가져올 수 있다.
@@ -442,8 +422,6 @@ Boolean('blue') // true
 !!0 // false
 Boolean(0) // false
 ```
-
-<hr/>
 
 ## 12. [불리언 연산자 2]. && (AND)
 
@@ -472,8 +450,6 @@ obj라는 객체의 메소드를 사용하고자 할 때, obj라는 객체가 �
 
 > 책에서의 found && someUndeclaredVariable 을 변형하였음.
 
-<hr/>
-
 ## 13. [불리언 연산자 3.] || (OR)
 
 | 피연산자1 | 피연산자2 | 결과 |
@@ -501,8 +477,6 @@ let obj = preferredObject || backupObject
 
 obj라는 객체의 값을 할당할 때, preferredObject를 담을 목적이지만, 해당 값이 빈값이거나 할당이 안된 값이면(false) null이나 undefined를 할당하는 것이 아니라 backupObject 값을 할당하게끔 할 수 있다.
 
-<hr/>
-
 ## 14. 숫자와 문자의 덧셈과 뺄셈
 
 앞서서 자바스크립트에서는 숫자가 아니지만 숫자로 변환할 수 있는 타입끼리의 연산은 자동으로 변환해서 연산을 수행한 다는 것을 배웠다.
@@ -529,8 +503,6 @@ let result = num1 + num2
 let message = 'The sum of 10 + 20 is ' + result // The sum of 10 + 20 is 30
 ```
 
-<hr/>
-
 ## 15. 관계 연산자(>,<)
 
 | 피연산자 상태                    | 비교방식                                                    |
@@ -549,8 +521,6 @@ let message = 'The sum of 10 + 20 is ' + result // The sum of 10 + 20 is 30
 'a' > 3 // false
 'a' <= 3 // false
 ```
-
-<hr/>
 
 ## 16. 동일 연산자(==), 일치 연산자(===)
 
@@ -573,8 +543,6 @@ true === 1 // false
 ```
 
 > 여러가지 문제를 피해가 위해서 동일 연산자(==) 보다는 일치 연산자(===)를 쓰는 것이 권장됨.
-
-<hr/>
 
 ## 17. for...in vs for...of
 
@@ -622,8 +590,6 @@ for (let i in obj) {
   console.log(obj[i]) // 'taeeun', 27, 'movie'
 }
 ```
-
-<hr/>
 
 ## 18. 문장 레이블, break, continue
 
@@ -675,8 +641,6 @@ loop1: for (let i = 0; i < 3; i++) {
 ```
 
 > continue는 성능문제를 일으켜서 최대한 사용을 권장하지 않는다고 한다. 중첩을 돌면서 해당 조건을 만족하면 return 이나 break로 재빨리 반복문을 빠져나오게끔하는 코드가 좋은 코드일 듯!
-
-<hr/>
 
 ## 19. 함수의 매개변수
 
