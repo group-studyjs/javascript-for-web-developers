@@ -342,19 +342,39 @@ const func = new Function()
 
 > 의문! 배열,함수,객체인스턴스 모두 객체인가?? 5장부터 객체가 나오긴하는데 객체의 정의가 {}만 말하는 것인지 Array, Function, Date, console 이런 내장객체를 포괄하는 개념인지 헷갈림.. 그냥 원시타입 아닌 것들은 전부 다 객체인가? [참고링크](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)
 
-프로퍼티(속성)과 메소드를 추가하여 독립된 새로운 객체를 만들 수 있다.
+참고링크 : [빌트인 객체](https://poiemaweb.com/js-built-in-object)
+![](https://poiemaweb.com/img/objects.png)
+
+내가 원래 알고있는 객체랑 링크에 나오는 전체를 포괄하는 개념의 객체(그림 맨 왼쪽 노란박스의 Object)가 달라서 헷갈렸던 것 같다.
+
+내가 원래 알고 있던 객체의 의미는
 
 ```js
 var obj = {
-    // 속성
-    property : "property",
-
-    // 메소드
-    method: function() {}
-    // 혹은
-    method() {}
+  name: 'taeeun',
+  age: 27,
 }
 ```
+
+이건데, 이건 위 이미지에서 native Object 안의 Object만 의미하는 게 아닌가 생각했다.
+
+근데 생각해보니까
+
+```js
+var obj = {
+  // 속성
+  property: 'property',
+
+  // 메소드
+  method: function () {},
+}
+```
+
+객체는 이런 식으로 프로퍼티(속성)과 메소드를 추가하여 독립된 새로운 객체를 만들 수 있다. 이렇게 생각하니까 전역객체인 `window`나 내장객체인 `Array`같은 것들이 다 객체다 라는 말이 이해가 되었다.
+
+그리고 찾아보니까 `JavaScript에서 모든 객체들은 Object의 자손입니다.`[MDN 참고링크](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object)라는 말이 있는데 위 그림의 모든 것을 포괄하는 의미의 객체(맨 왼쪽 노란박스의 Object)랑 native Object 안에 있는 Object랑 같은 거라고 볼수 있을까?
+
+프로토타입 상속을 공부할 때 정확하게 이해할 수 있을거 같다.
 
 new 키워드를 통하여 인스턴스를 만들 수도 있다.
 
@@ -371,6 +391,8 @@ console.log(user.isAdmin) // false
 ```
 
 > 의문! 우리가 사용하는 함수나 배열도 다 new 를 이용해서 객체 인스턴스화 시켜서 만든것? 그렇다면 `Array`, `Function` 이런 애들을 내장객체라고 부르는데 그로 인해 생성된 인스턴스도 객체인데 객체로 객체를 만든건가..?
+
+이것도 마찬가지로 프로토타입 상속 공부할 때 정확히 이해할 수 있을거 같다.
 
 ```js
 // 배열의 경우
@@ -679,8 +701,10 @@ add(1, 2, 3, 4, 5) // 15
 
 > p.104 페이지에 "ECMAScript의 매개변수는 모두 값으로 넘겨야 합니다. 매개변수를 참조 형식으로 전달할 수는 없습니다." 라는 말은 이해안됨.ㅠ
 
+참고링크 : [https://www.javascripttutorial.net/javascript-pass-by-value/](https://www.javascripttutorial.net/javascript-pass-by-value/)
+
 ```js
-// 참조타입으로 매개변수 잘만 들어가는디...
+// 이건 참조값을 변화시켜서 잘 동작함
 let arr = [1, 2, 3]
 function a(k) {
   k.splice(0, 1)
@@ -688,6 +712,17 @@ function a(k) {
 }
 a(arr) // [2,3]
 console.log(arr) // [2,3]
+```
+
+```js
+// 이건 함수 내부 변수만 다른 값을 가리키기 때문에 잘 작동안함
+let arr = [1, 2, 3]
+function a(k) {
+  k = [2, 3]
+  console.log(k)
+}
+a(arr) // [2,3]
+console.log(arr) // [1,2,3]
 ```
 
 마찬가지로 자바스크립트는 자바처럼 오버로딩은 없지만 매개변수가 배열로 들어온다는 성질을 이용해서 오버로딩을 흉내낼 수 있다.
