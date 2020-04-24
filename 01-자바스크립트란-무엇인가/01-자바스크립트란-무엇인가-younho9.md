@@ -63,7 +63,11 @@ IE를 제외한 모던 브라우저에서 96~99% 정도로 ES6를 지원하고 �
 
 ### 문서 객체 모델(Document Object Model)
 
-자바스크립트는 프로그래밍 언어로서의 코어가 되는 ECMAScript에 더해 브라우저가 별도 지원하는 클라이언트 사이드 Web API, 즉 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등을 모두 포함하는 개념이다.
+자바스크립트는 일반적으로 ECMAScript에 더해 브라우저가 별도 지원하는 클라이언트 사이드 Web API(DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker)를 모두 포함하는 것으로 여겨진다.
+
+> ECMAScript는 언어의 사양(Specification)
+>
+> JavaScript는 ECMAScript 표준을 따르는 언어, 엔진마다 구현이 다를 수 있다.
 
 이 중 문서 객체 모델(DOM)은 XML이나 HTML 문서에 접근하기 위한 애플리케이션 프로그래밍 인터페이스(API)이다. 이 객체 모델은 문서 내의 모든 요소를 정의하고, 각각의 요소에 접근하는 방법을 제공한다. DOM은 전체 페이지를 노드의 계층 구조로 변환한다.
 
@@ -108,4 +112,6 @@ BOM은 일차적으로 브라우저 창과 프레임을 다루는 인터페이�
 🔗 [자바스크립트 역사](http://frontend.diffthink.kr/2016/06/blog-post_26.html)
 
 🔗 [자바스크립트의 탄생과 ECMAScript 역사 정리](https://erokuma.tistory.com/entry/자바스크립트의-역사와-ECMAScript-대해)
+
+🔗 [JavaScript와 ECMAScript는 무슨 차이점이 있을까?](https://wormwlrm.github.io/2018/10/03/What-is-the-difference-between-javascript-and-ecmascript.html)
 
