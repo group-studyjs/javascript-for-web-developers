@@ -7,7 +7,7 @@ function setName(obj) {
   obj.name = 'Nicholas'
   obj = new Object()
   obj.name = 'Greg'
-  // 이 obj를 가리키게 하려면 이 값자체를 리턴해주면 된다.
+  // person이 obj를 가리키게 하려면 이 값자체를 리턴해주면 된다.
   return obj
 }
 
@@ -31,11 +31,11 @@ console.log(obj2.name) // Nicholas
 
 ```js
 const numbers = [1, 2, 3, 4]
-typeof arr //  "object"
-arr instanceof Object // true
+typeof numbers //  "object"
+numbers instanceof Object // true
 
-arr instanceof Array // true
-arr instanceof Function // false
+numbers instanceof Array // true
+numbers instanceof Function // false
 ```
 
 # 3. 실행 컨텍스트
