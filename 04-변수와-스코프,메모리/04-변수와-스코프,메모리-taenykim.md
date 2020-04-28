@@ -56,6 +56,44 @@ arr instanceof Function // false
 
 전역객체의 경우, arguments는 존재하지 않음. 함수실행 컨텍스트는 실행될 때가 아닌 선언될 때, 변수 객체를 구성함.
 
+함수의 경우 선언만 변수객체에 포함되며 표현식은 포함되지 않는다.
+
+선언식 함수 객체의 경우 변수구성시, [[Scopes]] 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 함수 객체만이 소유하는 내부 프로퍼티(Internal Property)로서 자신의 실행 환경(Lexical Enviroment)과 자신을 포함하는 외부 함수의 실행 환경과 전역 객체를 가리키는데 이때 자신을 포함하는 외부 함수의 실행 컨텍스트가 소멸하여도 [[Scopes]] 프로퍼티가 가리키는 외부 함수의 실행 환경(Activation object)은 소멸하지 않고 참조할 수 있다. 이것이 클로저이다.
+
+![](https://poiemaweb.com/img/ec_7.png)
+
+함수선언식은 변수 객체(VO)에 함수명을 프로퍼티로 추가하고 즉시 함수 객체를 즉시 할당하지만 함수 표현식은 일반 변수의 방식을 따른다.
+
+그렇기 때문에 함수선언식은 함수호이스팅이 가능하지만, 표현식은 함수호이스팅이 되지 않는다.
+
+```js
+// 함수 선언식
+
+hello() // "hello"
+let num = 0
+
+function hello() {
+  return console.log('hello')
+}
+// 실행 컨텍스트에서의 변수객체 : [num, hello]
+```
+
+여기서 hello 함수의 [[Scopes]]에 전역 스코프가 담긴다.
+
+```js
+// 함수 표현식
+
+hello() // Uncaught TypeError: hello is not a function at <anonymous>
+let num = 0
+
+const hello = function () {
+  return console.log('hello')
+}
+// 전역 컨텍스트에서의 변수객체 : [num, hello]
+```
+
+[함수호이스팅](https://poiemaweb.com/js-function#2-%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)
+
 ## 4-2. scope chain
 
 스코프 체인(Scope Chain)은 일종의 리스트로서 전역 객체와 중첩된 함수의 스코프의 레퍼런스를 차례로 저장하고 있음. 해당 컨텍스트에 변수정보가 없을 시, 이 scope chain을 통해 scope를 참조한다.
@@ -139,3 +177,5 @@ console.log(j) // error
 [https://www.zerocho.com/category/JavaScript/post/5741d96d094da4986bc950a0](https://www.zerocho.com/category/JavaScript/post/5741d96d094da4986bc950a0)
 
 [https://poiemaweb.com/js-execution-context](https://poiemaweb.com/js-execution-context)
+
+[https://poiemaweb.com/js-function#2-%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85](https://poiemaweb.com/js-function#2-%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)
