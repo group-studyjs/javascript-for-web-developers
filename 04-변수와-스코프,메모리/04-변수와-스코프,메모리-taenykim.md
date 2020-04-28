@@ -54,11 +54,13 @@ arr instanceof Function // false
 
 ## 4-1. 변수 객체 (변수, 함수선언, arguments)
 
-전역객체의 경우, arguments는 존재하지 않음. 함수실행 컨텍스트는 실행될 때가 아닌 선언될 때, 변수 객체를 구성함.
+전역객체의 경우, arguments는 존재하지 않음.
 
-함수의 경우 선언만 변수객체에 포함되며 표현식은 포함되지 않는다.
+함수실행 컨텍스트는 실행될 때가 아닌 선언될 때, 변수 객체를 구성함.
 
 선언식 함수 객체의 경우 변수구성시, [[Scopes]] 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 함수 객체만이 소유하는 내부 프로퍼티(Internal Property)로서 자신의 실행 환경(Lexical Enviroment)과 자신을 포함하는 외부 함수의 실행 환경과 전역 객체를 가리키는데 이때 자신을 포함하는 외부 함수의 실행 컨텍스트가 소멸하여도 [[Scopes]] 프로퍼티가 가리키는 외부 함수의 실행 환경(Activation object)은 소멸하지 않고 참조할 수 있다. 이것이 클로저이다.
+
+> 요거 어렵다..ㅠㅠ
 
 ![](https://poiemaweb.com/img/ec_7.png)
 
@@ -78,7 +80,7 @@ function hello() {
 // 실행 컨텍스트에서의 변수객체 : [num, hello]
 ```
 
-여기서 hello 함수의 [[Scopes]]에 전역 스코프가 담긴다.
+> 의문! 여기서 hello 함수의 [[Scopes]]에 전역 스코프가 담기기 때문에 hello() 해도 전역스코프를 참조하기 때문에 hello함수를 잘 가져오는 것?
 
 ```js
 // 함수 표현식
@@ -91,6 +93,8 @@ const hello = function () {
 }
 // 전역 컨텍스트에서의 변수객체 : [num, hello]
 ```
+
+> 의문! 여기서는 일반 변수로 hello가 컨텍스트 변수객체에 들어갔으나, undefined 상태라 에러?
 
 [함수호이스팅](https://poiemaweb.com/js-function#2-%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85)
 
