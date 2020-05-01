@@ -7,7 +7,7 @@ function setName(obj) {
   obj.name = 'Nicholas'
   obj = new Object()
   obj.name = 'Greg'
-  // person이 obj를 가리키게 하려면 이 값자체를 리턴해주면 된다.
+  // 바뀐 obj 객체의 값을 사용하려면 이 값자체를 리턴해주면 된다.
   return obj
 }
 
