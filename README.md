@@ -25,7 +25,7 @@
 1. 원본 repository 를 remote 로 추가 (처음에 한번만)
 
 ```
-git remote add upstream https://github.com/JS-Book-study/javascript-for-web-developers.git
+git remote add upstream https://github.com/group-studyjs/javascript-for-web-developers.git
 ```
 
 2. 원본 repository 의 변경 사항 확인
